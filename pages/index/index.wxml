@@ -1,0 +1,37 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+  <view class="header">
+    <image class="logo" src="/images/logo.png" mode="aspectFit"></image>
+    <text class="title">PetVetAI</text>
+    <text class="subtitle">AI 宠物医疗助手</text>
+  </view>
+
+  <view class="content">
+    <view class="intro-card">
+      <text class="intro-title">欢迎使用 PetVetAI</text>
+      <text class="intro-text">您的智能宠物医疗助手，提供专业的症状分析和健康建议</text>
+    </view>
+
+    <view class="features">
+      <view class="feature-item">
+        <text class="feature-icon">🤖</text>
+        <text class="feature-text">AI 智能诊断</text>
+      </view>
+      <view class="feature-item">
+        <text class="feature-icon">⚡</text>
+        <text class="feature-text">快速响应</text>
+      </view>
+      <view class="feature-item">
+        <text class="feature-icon">💡</text>
+        <text class="feature-text">专业建议</text>
+      </view>
+    </view>
+
+    <button class="btn-start" bindtap="goToDiagnosis">开始咨询</button>
+
+    <view class="notice">
+      <text class="notice-text">⚠️ 提示：AI 诊断结果仅供参考，请咨询专业兽医</text>
+    </view>
+  </view>
+</view>
+
