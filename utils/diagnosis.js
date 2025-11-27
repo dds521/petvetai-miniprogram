@@ -3,8 +3,7 @@
  * 处理宠物症状诊断相关的 API 调用
  */
 
-const { post } = require('./request')
-const apiConfig = require('../config/api')
+const { diagnosisApi } = require('./api')
 
 /**
  * 提交诊断请求
@@ -13,20 +12,11 @@ const apiConfig = require('../config/api')
  * @returns {Promise} 诊断结果
  */
 function submitDiagnosis(petId, symptomDesc) {
-  return post(
-    apiConfig.endpoints.DIAGNOSE,
-    {
-      petId: petId,
-      symptomDesc: symptomDesc
-    },
-    {
-      loading: true,
-      loadingText: 'AI分析中...'
-    }
-  )
+  return diagnosisApi.submitDiagnosis(petId, symptomDesc)
 }
 
 module.exports = {
   submitDiagnosis
 }
+
 

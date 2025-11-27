@@ -45,6 +45,15 @@ Page({
   },
 
   /**
+   * 跳转到 Demo 页面
+   */
+  goToDemo() {
+    wx.navigateTo({
+      url: '/pages/demo/demo'
+    })
+  },
+
+  /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
@@ -96,4 +105,5 @@ Page({
     }
   }
 })
+
 

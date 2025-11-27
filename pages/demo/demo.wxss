@@ -1,0 +1,289 @@
+/* pages/demo/demo.wxss */
+.container {
+  padding: 20rpx;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.header {
+  text-align: center;
+  padding: 40rpx 0;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-radius: 20rpx;
+  margin-bottom: 30rpx;
+  color: white;
+}
+
+.title {
+  display: block;
+  font-size: 48rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.subtitle {
+  display: block;
+  font-size: 28rpx;
+  opacity: 0.9;
+}
+
+/* 模块区域 */
+.section {
+  background-color: white;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #e5e7eb;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #1f2937;
+}
+
+.btn-check {
+  background-color: #10b981;
+  color: white;
+  border-radius: 10rpx;
+}
+
+/* 健康检查卡片 */
+.health-card {
+  margin-top: 20rpx;
+}
+
+.health-status {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  border-radius: 10rpx;
+  margin-bottom: 15rpx;
+}
+
+.health-status.success {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.health-status.error {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.status-icon {
+  font-size: 36rpx;
+  margin-right: 15rpx;
+}
+
+.status-text {
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.health-data {
+  padding: 15rpx;
+  background-color: #f9fafb;
+  border-radius: 10rpx;
+  margin-top: 15rpx;
+}
+
+.data-label {
+  display: block;
+  font-size: 24rpx;
+  color: #6b7280;
+  margin-bottom: 10rpx;
+}
+
+.data-content {
+  display: block;
+  font-size: 24rpx;
+  color: #1f2937;
+  word-break: break-all;
+}
+
+/* 表单卡片 */
+.form-card {
+  margin-top: 20rpx;
+}
+
+.form-item {
+  margin-bottom: 30rpx;
+}
+
+.label {
+  display: block;
+  font-size: 28rpx;
+  color: #374151;
+  margin-bottom: 15rpx;
+  font-weight: 500;
+}
+
+.input {
+  width: 100%;
+  height: 80rpx;
+  padding: 0 20rpx;
+  background-color: #f9fafb;
+  border: 1rpx solid #e5e7eb;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 200rpx;
+  padding: 20rpx;
+  background-color: #f9fafb;
+  border: 1rpx solid #e5e7eb;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+}
+
+.char-count {
+  display: block;
+  text-align: right;
+  font-size: 24rpx;
+  color: #9ca3af;
+  margin-top: 10rpx;
+}
+
+.btn-submit {
+  width: 100%;
+  height: 88rpx;
+  background-color: #10b981;
+  color: white;
+  border-radius: 10rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  margin-top: 20rpx;
+}
+
+.btn-submit.btn-loading {
+  background-color: #9ca3af;
+}
+
+.btn-submit[disabled] {
+  background-color: #d1d5db;
+}
+
+/* 结果卡片 */
+.result-card {
+  margin-top: 30rpx;
+  padding: 30rpx;
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  border-radius: 15rpx;
+  border-left: 6rpx solid #10b981;
+}
+
+.result-header {
+  margin-bottom: 20rpx;
+}
+
+.result-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #065f46;
+}
+
+.result-content {
+  margin-top: 20rpx;
+}
+
+.result-item {
+  margin-bottom: 15rpx;
+}
+
+.result-label {
+  font-size: 28rpx;
+  color: #047857;
+  font-weight: 500;
+  margin-right: 10rpx;
+}
+
+.result-text {
+  font-size: 28rpx;
+  color: #065f46;
+  line-height: 1.6;
+}
+
+.result-value {
+  font-size: 28rpx;
+  color: #10b981;
+  font-weight: bold;
+}
+
+/* 错误卡片 */
+.error-card {
+  margin-top: 30rpx;
+  padding: 30rpx;
+  background-color: #fee2e2;
+  border-radius: 15rpx;
+  border-left: 6rpx solid #ef4444;
+  display: flex;
+  align-items: center;
+}
+
+.error-icon {
+  font-size: 36rpx;
+  margin-right: 15rpx;
+}
+
+.error-text {
+  font-size: 28rpx;
+  color: #991b1b;
+  flex: 1;
+}
+
+/* 操作栏 */
+.action-bar {
+  margin-top: 20rpx;
+  text-align: center;
+}
+
+.btn-clear {
+  background-color: #f3f4f6;
+  color: #6b7280;
+  border-radius: 10rpx;
+}
+
+/* 说明信息 */
+.info-section {
+  background-color: white;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.info-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 20rpx;
+}
+
+.info-item {
+  margin-bottom: 15rpx;
+  line-height: 1.6;
+}
+
+.info-label {
+  font-size: 28rpx;
+  color: #374151;
+  font-weight: 500;
+}
+
+.info-text {
+  font-size: 28rpx;
+  color: #6b7280;
+}
+

@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/diagnosis/diagnosis"
+    "pages/diagnosis/diagnosis",
+    "pages/demo/demo"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -34,4 +35,5 @@
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents"
 }
+
 
