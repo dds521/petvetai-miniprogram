@@ -21,6 +21,11 @@ const lucideIcons = {
     path: 'M4.5 3v4M4.5 7h5M19 10a7 7 0 1 1-14 0M19 10v6a3 3 0 0 1-3 3h-1M12 17v-2',
     viewBox: '0 0 24 24'
   },
+  // 魔法棒图标（用于AI诊断）
+  wand: {
+    path: 'M15 4V2m0 2v2m0-2h-2m2 0h2M7 20l-1.5-1.5c-.8-.8-1.2-2-.8-3.1l.3-1c.2-.6.6-1.1 1.1-1.4l8-4.5c.9-.5 2-.5 2.9 0l1.5.8c.9.5 1.5 1.4 1.5 2.4v.6c0 .5-.2 1-.6 1.4L16 15l-4-4-5 9z',
+    viewBox: '0 0 24 24'
+  },
   calendar: {
     path: 'M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z',
     viewBox: '0 0 24 24'
@@ -41,7 +46,7 @@ const colors = {
 const iconConfig = [
   { name: 'home', lucideKey: 'home' },
   { name: 'consult', lucideKey: 'messageCircle' },
-  { name: 'diagnosis', lucideKey: 'stethoscope' },
+  { name: 'diagnosis', lucideKey: 'wand' }, // AI诊断使用魔法棒图标
   { name: 'appointment', lucideKey: 'calendar' },
   { name: 'profile', lucideKey: 'user' }
 ]
@@ -57,25 +62,48 @@ function generateSVG(iconData, color, isDiagnosisSelected = false, size = 81) {
   const { path: iconPath, viewBox } = iconData
   
   if (isDiagnosisSelected) {
-    // "AI诊断"选中状态：白色轮廓图标 + 紫色圆形背景
-    // 圆形背景更大，占据更多空间，形成"弹出"效果
-    const circleSize = size * 0.95; // 圆形背景更大，接近整个图标尺寸
+    // "AI诊断"选中状态：魔法棒+星星 + 紫色渐变圆形背景
+    const circleSize = size * 0.95;
     const circleX = size / 2;
     const circleY = size / 2;
     const circleRadius = circleSize / 2;
     
-    // 图标尺寸进一步放大，在圆形背景中更突出
-    const iconScale = 1.5; // 放大 50%，让图标在圆形中更明显
-    const iconSize = 24 * iconScale; // 图标实际尺寸
-    const iconOffset = (size - iconSize) / 2; // 居中偏移
+    // 魔法棒和星星的尺寸和位置
+    const wandLength = size * 0.4;
+    const wandX = size * 0.3;
+    const wandY = size * 0.6;
+    const wandAngle = -25; // 斜向上角度
+    
+    // 星星位置
+    const star1X = size * 0.65;
+    const star1Y = size * 0.35;
+    const star2X = size * 0.25;
+    const star2Y = size * 0.75;
+    const starSize = size * 0.12;
     
     return `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" xmlns="http://www.w3.org/2000/svg">
-  <!-- 紫色圆形背景（更大，形成弹出效果） -->
-  <circle cx="${circleX}" cy="${circleY}" r="${circleRadius}" fill="${colors.selected}"/>
-  <!-- 白色轮廓图标（放大，更突出） -->
-  <g transform="translate(${iconOffset}, ${iconOffset}) scale(${iconScale})">
-    <path d="${iconPath}" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <defs>
+    <!-- 紫色渐变 -->
+    <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a855f7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#9333ea;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- 紫色渐变圆形背景 -->
+  <circle cx="${circleX}" cy="${circleY}" r="${circleRadius}" fill="url(#purpleGradient)"/>
+  <!-- 魔法棒（白色，斜向上） -->
+  <g transform="translate(${wandX}, ${wandY}) rotate(${wandAngle})">
+    <line x1="0" y1="0" x2="${wandLength}" y2="0" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="${wandLength * 0.15}" cy="0" r="2" fill="#ffffff"/>
+  </g>
+  <!-- 星星1（右上） -->
+  <g transform="translate(${star1X}, ${star1Y})">
+    <path d="M ${starSize/2} 0 L ${starSize*0.4} ${starSize*0.4} L 0 ${starSize*0.4} L ${starSize*0.3} ${starSize*0.6} L ${starSize*0.2} ${starSize} L ${starSize/2} ${starSize*0.7} L ${starSize*0.8} ${starSize} L ${starSize*0.7} ${starSize*0.6} L ${starSize} ${starSize*0.4} L ${starSize*0.6} ${starSize*0.4} Z" fill="#ffffff"/>
+  </g>
+  <!-- 星星2（左下） -->
+  <g transform="translate(${star2X}, ${star2Y})">
+    <path d="M ${starSize/2} 0 L ${starSize*0.4} ${starSize*0.4} L 0 ${starSize*0.4} L ${starSize*0.3} ${starSize*0.6} L ${starSize*0.2} ${starSize} L ${starSize/2} ${starSize*0.7} L ${starSize*0.8} ${starSize} L ${starSize*0.7} ${starSize*0.6} L ${starSize} ${starSize*0.4} L ${starSize*0.6} ${starSize*0.4} Z" fill="#ffffff"/>
   </g>
 </svg>`
   } else {
