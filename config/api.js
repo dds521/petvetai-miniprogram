@@ -71,7 +71,11 @@ const config = {
     // 宠物诊断
     DIAGNOSE: '/api/pet/diagnose',
     // 健康检查
-    HEALTH: '/actuator/health'
+    HEALTH: '/actuator/health',
+    // 微信登录
+    WECHAT_LOGIN: '/api/auth/wechat/login',
+    // 更新用户信息
+    UPDATE_USER_INFO: '/api/auth/wechat/userinfo'
   }
 }
 

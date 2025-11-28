@@ -25,15 +25,26 @@ function request(options) {
       ? options.url 
       : `${apiConfig.baseURL}${options.url}`
 
+    // 获取token（如果存在）
+    const token = wx.getStorageSync('token')
+    
+    // 构建请求头
+    const headers = {
+      'Content-Type': 'application/json',
+      ...options.header
+    }
+    
+    // 如果有token，添加到请求头
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`
+    }
+    
     // 发起请求
     wx.request({
       url: url,
       method: options.method || 'GET',
       data: options.data || {},
-      header: {
-        'Content-Type': 'application/json',
-        ...options.header
-      },
+      header: headers,
       timeout: options.timeout || apiConfig.timeout,
       success: (res) => {
         // 隐藏加载提示
