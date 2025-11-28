@@ -1,0 +1,74 @@
+<!--pages/consult/consult.wxml-->
+<view class="page">
+  <!-- 头部 -->
+  <view class="header gradient-bg">
+    <view class="header-content">
+      <view class="header-top">
+        <view class="back-btn" bindtap="goBack">
+          <text class="back-icon">←</text>
+        </view>
+        <view class="header-text">
+          <text class="header-title">在线咨询</text>
+          <text class="header-subtitle">专业医生24小时在线</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 消息列表 -->
+  <scroll-view class="messages-scroll" scroll-y scroll-into-view="{{scrollIntoView}}" scroll-with-animation enable-back-to-top show-scrollbar="{{false}}">
+    <view class="messages-container">
+      <view class="messages-list">
+      <view 
+        class="message-item {{item.type === 'user' ? 'user-message' : 'ai-message'}}" 
+        wx:for="{{messages}}" 
+        wx:key="id"
+        id="msg-{{item.id}}"
+      >
+        <view class="message-avatar {{item.type === 'ai' ? 'ai-avatar' : 'user-avatar'}}">
+          <text wx:if="{{item.type === 'ai'}}">🤖</text>
+          <text wx:else>👤</text>
+        </view>
+        <view class="message-content {{item.type === 'ai' ? 'ai-content' : 'user-content'}}">
+          <text class="message-text">{{item.content}}</text>
+          <text class="message-time">{{item.timestamp}}</text>
+        </view>
+      </view>
+
+      <!-- 正在输入 -->
+      <view class="message-item ai-message" wx:if="{{isTyping}}">
+        <view class="message-avatar ai-avatar">
+          <text>🤖</text>
+        </view>
+        <view class="message-content ai-content typing">
+          <view class="typing-dots">
+            <view class="dot"></view>
+            <view class="dot"></view>
+            <view class="dot"></view>
+          </view>
+        </view>
+      </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 输入框 -->
+  <view class="input-container">
+    <view class="input-wrapper {{inputFocused ? 'input-wrapper-focus' : ''}}">
+      <input 
+        class="input-field" 
+        placeholder="输入您的问题..." 
+        value="{{input}}"
+        bindinput="onInput"
+        confirm-type="send"
+        bindconfirm="sendMessage"
+        bindfocus="handleInputFocus"
+        bindblur="handleInputBlur"
+      />
+    </view>
+    <button class="send-btn" bindtap="sendMessage" disabled="{{!canSend}}">
+      <text class="send-icon">➤</text>
+    </button>
+  </view>
+</view>
+

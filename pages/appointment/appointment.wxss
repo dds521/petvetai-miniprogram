@@ -1,0 +1,356 @@
+/* pages/appointment/appointment.wxss */
+.page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #a855f7 0%, #9333ea 50%, #3b82f6 100%);
+  padding-bottom: 40rpx;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+}
+
+/* Header */
+.header {
+  padding: 96rpx 40rpx 48rpx !important;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  gap: 24rpx !important;
+}
+
+.back-btn {
+  width: 80rpx !important;
+  height: 80rpx !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(16rpx) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+}
+
+.back-icon {
+  color: #ffffff !important;
+  font-size: 40rpx !important;
+  font-weight: 600 !important;
+}
+
+.header-content {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.header-title {
+  color: #ffffff !important;
+  font-size: 40rpx !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+  margin-bottom: 8rpx !important;
+}
+
+.header-subtitle {
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-size: 24rpx !important;
+}
+
+.page .content {
+  display: flex !important;
+  flex-direction: column !important;
+  padding-left: 32rpx !important;
+  padding-right: 32rpx !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: -32rpx !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  align-items: stretch !important;
+}
+
+/* Card Styles */
+.page .content .card,
+.page .card,
+.content .card,
+.card {
+  background: #ffffff !important;
+  border-radius: 48rpx !important;
+  padding: 32rpx !important;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.08) !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin-bottom: 24rpx !important;
+  margin-top: 0 !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  align-self: stretch !important;
+}
+
+.card-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16rpx !important;
+  margin-bottom: 32rpx !important;
+}
+
+.card-icon {
+  font-size: 40rpx !important;
+}
+
+.card-title {
+  font-size: 32rpx !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+  color: #1f2937 !important;
+}
+
+/* Date Selection */
+.date-scroll {
+  width: 100% !important;
+  white-space: nowrap;
+}
+
+.date-list {
+  display: flex !important;
+  gap: 16rpx !important;
+}
+
+.date-item {
+  display: inline-block !important;
+  flex-shrink: 0 !important;
+  padding: 24rpx 40rpx !important;
+  border-radius: 24rpx !important;
+  border: 4rpx solid #e5e7eb !important;
+  background: #ffffff !important;
+  text-align: center !important;
+  transition: all 0.2s ease !important;
+  box-sizing: border-box !important;
+  width: auto !important;
+}
+
+.date-item.selected {
+  background: #9333ea !important;
+  border-color: #9333ea !important;
+  color: #ffffff !important;
+  transform: translateY(-4rpx) !important;
+  box-shadow: 0 8rpx 16rpx rgba(147, 51, 234, 0.2) !important;
+}
+
+.date-label {
+  display: block !important;
+  font-size: 28rpx !important;
+  font-weight: 500 !important;
+  margin-bottom: 8rpx !important;
+  color: #1f2937 !important;
+}
+
+.date-item.selected .date-label {
+  color: #ffffff !important;
+}
+
+.date-day {
+  display: block !important;
+  font-size: 24rpx !important;
+  opacity: 0.8 !important;
+  color: #4b5563 !important;
+}
+
+.date-item.selected .date-day {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Time Selection */
+.time-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 12rpx !important;
+}
+
+.time-slot {
+  padding: 16rpx 0 !important;
+  border-radius: 16rpx !important;
+  border: 4rpx solid #e5e7eb !important;
+  background: #ffffff !important;
+  text-align: center !important;
+  font-size: 28rpx !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+  color: #1f2937 !important;
+  box-sizing: border-box !important;
+  align-self: stretch !important;
+}
+
+.time-slot.selected {
+  background: #9333ea !important;
+  border-color: #9333ea !important;
+  color: #ffffff !important;
+  transform: translateY(-4rpx) !important;
+  box-shadow: 0 8rpx 16rpx rgba(147, 51, 234, 0.2) !important;
+}
+
+/* Hospital Selection */
+.hospital-list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 24rpx !important;
+}
+
+.page .content .hospital-item,
+.page .hospital-item,
+.content .hospital-item,
+.hospital-item {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+  padding: 32rpx !important;
+  border-radius: 32rpx !important;
+  border: 4rpx solid #e5e7eb !important;
+  transition: all 0.2s ease !important;
+  background: #ffffff !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+}
+
+.hospital-item:active {
+  border-color: #a78bfa !important;
+  background: #f5f3ff !important;
+}
+
+.hospital-info {
+  flex: 1 !important;
+  line-height: 1.4 !important;
+  min-width: 0 !important;
+  padding-right: 16rpx !important;
+}
+
+.hospital-name {
+  display: block !important;
+  font-size: 30rpx !important;
+  font-weight: 600 !important;
+  color: #1f2937 !important;
+  margin-bottom: 12rpx !important;
+}
+
+.hospital-meta {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16rpx !important;
+  font-size: 24rpx !important;
+  color: #4b5563 !important;
+  font-weight: 400 !important;
+  margin-bottom: 12rpx !important;
+}
+
+.meta-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8rpx !important;
+}
+
+.meta-icon {
+  font-size: 28rpx !important;
+}
+
+.meta-icon.star {
+  color: #f59e0b !important;
+}
+
+.arrow-icon {
+  font-size: 40rpx !important;
+  color: #9ca3af !important;
+  flex-shrink: 0 !important;
+  margin-left: 0 !important;
+  align-self: flex-start !important;
+  padding: 0 !important;
+}
+
+.hospital-address {
+  font-size: 24rpx !important;
+  color: #6b7280 !important;
+  display: block !important;
+  margin-top: 12rpx !important;
+  line-height: 1.4 !important;
+  word-break: normal !important;
+}
+
+/* Confirm Button */
+.page .content .confirm-btn,
+.page .confirm-btn,
+.content .confirm-btn,
+.confirm-btn {
+  width: 100% !important;
+  padding: 32rpx 0 !important;
+  background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%) !important;
+  color: #ffffff !important;
+  border-radius: 32rpx !important;
+  font-size: 32rpx !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.01em !important;
+  margin-bottom: 32rpx !important;
+  box-shadow: 0 4rpx 12rpx rgba(147, 51, 234, 0.3) !important;
+  transition: all 0.2s ease !important;
+  border: none !important;
+  display: block !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
+}
+
+.confirm-btn.disabled {
+  background: #d1d5db !important;
+  box-shadow: none !important;
+  color: #9ca3af !important;
+}
+
+.confirm-btn::after {
+  display: none !important;
+}
+
+/* Tips Card */
+.page .content .tips-card,
+.page .tips-card,
+.content .tips-card,
+.tips-card {
+  background: #dbeafe !important;
+  border-radius: 32rpx !important;
+  padding: 32rpx !important;
+  border: 2rpx solid #93c5fd !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+}
+
+.tips-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16rpx !important;
+  margin-bottom: 24rpx !important;
+}
+
+.tips-icon {
+  font-size: 32rpx !important;
+}
+
+.tips-title {
+  font-size: 28rpx !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+  color: #1e40af !important;
+}
+
+.tips-list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12rpx !important;
+}
+
+.tip-item {
+  font-size: 24rpx !important;
+  color: #1e3a8a !important;
+  line-height: 1.6 !important;
+  font-weight: 400 !important;
+}
+

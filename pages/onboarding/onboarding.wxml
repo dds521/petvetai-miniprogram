@@ -1,0 +1,77 @@
+<!--pages/onboarding/onboarding.wxml-->
+<view class="onboarding-page">
+  <!-- 内容区域 -->
+  <swiper 
+    class="onboarding-swiper" 
+    current="{{currentIndex}}" 
+    bindchange="onSwiperChange"
+    duration="{{400}}"
+    easing-function="easeInOutCubic">
+    
+    <!-- 第一页：专业宠物医疗 -->
+    <swiper-item class="swiper-item page-blue">
+      <view class="onboarding-content">
+        <view class="icon-container">
+          <view class="icon-wrapper icon-hospital">
+            <text class="icon-emoji">🏥</text>
+          </view>
+        </view>
+        <view class="text-container">
+          <text class="main-title">专业宠物医疗</text>
+          <text class="sub-title">7x24小时在线咨询</text>
+          <text class="desc-text">专业兽医团队为您服务</text>
+        </view>
+      </view>
+    </swiper-item>
+
+    <!-- 第二页：AI智能诊断 -->
+    <swiper-item class="swiper-item page-purple">
+      <view class="onboarding-content">
+        <view class="icon-container">
+          <view class="icon-wrapper icon-robot">
+            <text class="icon-emoji">🤖</text>
+          </view>
+        </view>
+        <view class="text-container">
+          <text class="main-title">AI智能诊断</text>
+          <text class="sub-title">上传照片即可获得</text>
+          <text class="desc-text">初步健康评估和建议</text>
+        </view>
+      </view>
+    </swiper-item>
+
+    <!-- 第三页：守护爱宠健康 -->
+    <swiper-item class="swiper-item page-pink">
+      <view class="onboarding-content">
+        <view class="icon-container">
+          <view class="icon-wrapper icon-heart">
+            <text class="icon-emoji">❤️</text>
+          </view>
+        </view>
+        <view class="text-container">
+          <text class="main-title">守护爱宠健康</text>
+          <text class="sub-title">健康档案·疫苗提醒</text>
+          <text class="desc-text">让养宠更科学更放心</text>
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
+
+  <!-- 指示器 -->
+  <view class="indicator-container">
+    <view 
+      class="indicator {{index === currentIndex ? 'active' : ''}}" 
+      wx:for="{{totalPages}}" 
+      wx:key="index"
+      wx:for-index="index">
+    </view>
+  </view>
+
+  <!-- 底部按钮 -->
+  <view class="button-container">
+    <button class="next-btn" bindtap="nextStep">
+      <text class="btn-text">{{currentIndex < totalPages - 1 ? '下一步 >' : '立即开始 >'}}</text>
+    </button>
+  </view>
+</view>
+

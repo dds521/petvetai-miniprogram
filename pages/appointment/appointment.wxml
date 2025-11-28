@@ -1,0 +1,92 @@
+<!--pages/appointment/appointment.wxml-->
+<view class="page">
+  <!-- Header -->
+  <view class="header gradient-bg">
+    <view class="header-top">
+       <view class="back-btn" bindtap="goBack">
+        <text class="back-icon">←</text>
+      </view>
+      <view class="header-content">
+        <text class="header-title">预约挂号</text>
+        <text class="header-subtitle">选择医院和时间</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="content">
+    <!-- Date Selection -->
+    <view class="card">
+      <view class="card-header">
+        <text class="card-icon">📅</text>
+        <text class="card-title">选择日期</text>
+      </view>
+      <scroll-view class="date-scroll" scroll-x="true" show-scrollbar="{{false}}">
+        <view class="date-list">
+          <view wx:for="{{dates}}" wx:key="date" class="date-item {{selectedDate === item.date ? 'selected' : ''}}" data-date="{{item.date}}" bindtap="selectDate">
+            <text class="date-label">{{item.label}}</text>
+            <text class="date-day">{{item.day}}</text>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <!-- Time Selection -->
+    <view class="card">
+      <view class="card-header">
+        <text class="card-icon">🕒</text>
+        <text class="card-title">选择时间</text>
+      </view>
+      <view class="time-grid">
+        <view wx:for="{{timeSlots}}" wx:key="*this" class="time-slot {{selectedTime === item ? 'selected' : ''}}" data-time="{{item}}" bindtap="selectTime">
+          {{item}}
+        </view>
+      </view>
+    </view>
+
+    <!-- Hospital Selection -->
+    <view class="card">
+      <view class="card-header">
+        <text class="card-icon">🏥</text>
+        <text class="card-title">选择医院</text>
+      </view>
+      <view class="hospital-list">
+        <view wx:for="{{hospitals}}" wx:key="id" class="hospital-item">
+          <view class="hospital-info">
+            <text class="hospital-name">{{item.name}}</text>
+            <view class="hospital-meta">
+              <view class="meta-item">
+                <text class="meta-icon">📍</text>
+                <text>{{item.distance}}</text>
+              </view>
+              <view class="meta-item">
+                <text class="meta-icon star">⭐</text>
+                <text>{{item.rating}} ({{item.reviews}})</text>
+              </view>
+            </view>
+            <text class="hospital-address">{{item.address}}</text>
+          </view>
+          <text class="arrow-icon">></text>
+        </view>
+      </view>
+    </view>
+
+    <!-- Confirm Button -->
+    <view class="confirm-btn {{!canSubmit ? 'disabled' : ''}}" bindtap="confirmAppointment">
+      确认预约
+    </view>
+
+     <!-- Tips -->
+    <view class="tips-card">
+      <view class="tips-header">
+        <text class="tips-icon">💡</text>
+        <text class="tips-title">预约须知</text>
+      </view>
+      <view class="tips-list">
+        <text class="tip-item">• 请提前15分钟到达医院</text>
+        <text class="tip-item">• 携带宠物疫苗本和病历</text>
+        <text class="tip-item">• 如需取消请提前2小时通知</text>
+      </view>
+    </view>
+  </view>
+</view>
+

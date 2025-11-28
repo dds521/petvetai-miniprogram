@@ -1,0 +1,462 @@
+/* pages/consult/consult.wxss */
+/* 页面样式隔离 - 使用页面特定的类名前缀 */
+page {
+  height: 100vh;
+}
+
+.page {
+  height: 100vh !important;
+  min-height: 100vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  background: #ffffff !important; /* 页面背景为白色，与设计稿一致 */
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+/* Header 渐变背景 - 与 React 项目一致: bg-gradient-to-r from-purple-500 to-blue-400 */
+/* purple-500 = #a855f7, blue-400 = #60a5fa */
+.gradient-bg {
+  background: linear-gradient(to right, #a855f7 0%, #60a5fa 100%) !important; /* from-purple-500 to-blue-400 */
+}
+
+/* 头部 - 与 React 项目一致: px-5 pt-12 pb-6 = 40rpx 左右, 96rpx 上, 48rpx 下 */
+.header {
+  padding: 96rpx 40rpx 48rpx !important; /* pt-12 = 48px = 96rpx, px-5 = 20px = 40rpx, pb-6 = 24px = 48rpx */
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header 顶部 - 与 React 项目一致: flex items-center gap-3 */
+.header-top {
+  display: flex !important;
+  align-items: center !important;
+  gap: 24rpx !important; /* gap-3 = 12px = 24rpx */
+}
+
+/* 返回按钮 - 与 React 项目一致: w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm */
+.back-btn {
+  width: 80rpx !important; /* w-10 = 40px = 80rpx */
+  height: 80rpx !important; /* h-10 = 40px = 80rpx */
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.2) !important; /* bg-white/20 */
+  backdrop-filter: blur(10rpx) !important; /* backdrop-blur-sm */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+}
+
+/* 返回图标 - 与 React 项目一致: w-5 h-5 text-white */
+.back-icon {
+  color: #ffffff !important;
+  font-size: 40rpx !important; /* w-5 = 20px = 40rpx */
+  font-weight: 600 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* 使用页面级选择器确保样式生效，避免与其他页面冲突 */
+/* h1 默认样式: text-2xl = 24px = 48rpx, font-weight: 500 (medium) */
+page .page .header .header-text text.header-title,
+page .header .header-text text.header-title,
+.page .header .header-text text.header-title,
+.page .header-text text.header-title,
+.header .header-text text.header-title,
+.header-text text.header-title,
+text.header-title,
+.header-title {
+  color: #ffffff !important;
+  font-size: 48rpx !important; /* text-2xl = 1.5rem = 24px = 48rpx */
+  font-weight: 500 !important; /* font-weight-medium */
+  letter-spacing: -0.01em !important; /* 更精致的字间距 */
+  margin-bottom: 8rpx !important;
+  display: block !important;
+  line-height: 1.5 !important;
+  box-sizing: border-box !important;
+  font-family: 'SF Pro Display', 'PingFang SC', 'Helvetica Neue', sans-serif !important;
+  text-shadow: 0 6rpx 18rpx rgba(96, 165, 250, 0.45) !important;
+}
+
+/* text-sm = 14px = 28rpx, font-weight: 400 (normal) */
+page .page .header .header-text text.header-subtitle,
+page .header .header-text text.header-subtitle,
+.page .header .header-text text.header-subtitle,
+.page .header-text text.header-subtitle,
+.header .header-text text.header-subtitle,
+.header-text text.header-subtitle,
+text.header-subtitle,
+.header-subtitle {
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-size: 28rpx !important; /* text-sm = 0.875rem = 14px = 28rpx */
+  font-weight: 400 !important; /* font-weight-normal */
+  opacity: 0.8 !important;
+  display: block !important;
+  line-height: 1.5 !important;
+  letter-spacing: 0 !important; /* 更精致的字间距 */
+  box-sizing: border-box !important;
+}
+
+/* 消息容器 - 与 React 项目一致: bg-gray-50 px-5 py-6 space-y-4 */
+/* gray-50 = #f9fafb */
+.messages-container {
+  flex: 1 !important;
+  padding: 48rpx 40rpx !important; /* py-6 = 24px = 48rpx, px-5 = 20px = 40rpx */
+  overflow-y: auto !important;
+  background: #f9fafb !important; /* gray-50 */
+  border-radius: 40rpx 40rpx 0 0 !important;
+  margin-top: -20rpx !important;
+  height: 100% !important;
+  box-sizing: border-box !important;
+  min-height: 0 !important; /* 确保 flex 子元素可以收缩 */
+  position: relative !important;
+  /* 确保滚动条不占用内容空间 */
+  overflow-x: hidden !important;
+}
+
+/* 隐藏滚动条，但不改变内容宽度 */
+.messages-container::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.messages-container::-webkit-scrollbar-track,
+.messages-container::-webkit-scrollbar-thumb {
+  background: transparent !important;
+}
+
+/* 外层滚动容器，确保滚动条不遮挡内容 */
+.messages-scroll {
+  flex: 1 !important;
+  background: #f9fafb !important;
+  border-radius: 40rpx 40rpx 0 0 !important;
+  margin-top: -20rpx !important;
+  box-sizing: border-box !important;
+  min-height: 0 !important;
+  position: relative !important;
+  height: 100% !important;
+  width: 100% !important;
+  overflow: hidden !important;
+}
+
+.messages-scroll::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.messages-scroll::-webkit-scrollbar-track,
+.messages-scroll::-webkit-scrollbar-thumb {
+  background: transparent !important;
+}
+
+.messages-scroll .messages-container {
+  flex: initial !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 100% !important;
+  background: transparent !important;
+  overflow: visible !important;
+  padding: 48rpx 40rpx !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+}
+
+.messages-list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 32rpx !important; /* space-y-4 = 16px = 32rpx */
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  padding-bottom: 32rpx !important; /* 底部留出空间 */
+  overflow: visible !important;
+}
+
+/* 消息项 - 与 React 项目一致: flex gap-3 */
+.message-item {
+  display: flex !important;
+  gap: 24rpx !important; /* gap-3 = 12px = 24rpx */
+  align-items: flex-start !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  overflow: visible !important;
+}
+
+.user-message {
+  flex-direction: row-reverse;
+}
+
+.ai-message {
+  flex-direction: row;
+}
+
+/* 头像 - 与 React 项目一致: w-10 h-10 rounded-full */
+.message-avatar {
+  width: 80rpx !important; /* w-10 = 40px = 80rpx */
+  height: 80rpx !important; /* h-10 = 40px = 80rpx */
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 48rpx !important; /* 图标 w-6 h-6 = 24px = 48rpx */
+  flex-shrink: 0 !important;
+}
+
+/* AI 头像 - 与 React 项目一致: bg-gradient-to-br from-purple-500 to-blue-500 */
+.ai-avatar {
+  background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%) !important; /* from-purple-500 to-blue-500 */
+}
+
+/* 用户头像 - 与 React 项目一致: bg-gray-300 */
+.user-avatar {
+  background: #d1d5db !important; /* gray-300 */
+}
+
+/* 消息内容 - 与 React 项目一致: max-w-[70%] rounded-2xl px-4 py-3 */
+.message-content {
+  max-width: 70% !important;
+  border-radius: 32rpx !important; /* rounded-2xl = 1rem = 16px = 32rpx */
+  padding: 24rpx 32rpx !important; /* py-3 = 12px = 24rpx, px-4 = 16px = 32rpx */
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1) !important; /* shadow-sm */
+  box-sizing: border-box !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex-shrink: 1 !important;
+  min-width: 0 !important; /* 允许内容收缩 */
+}
+
+/* AI 消息内容 - 与 React 项目一致: bg-white text-gray-900 shadow-sm */
+/* gray-900 = #111827 (但实际使用 #1f2937 更接近) */
+.ai-content {
+  background: #ffffff !important;
+  color: #111827 !important; /* text-gray-900 = #111827 */
+}
+
+/* 用户消息内容 - 与 React 项目一致: bg-purple-500 text-white */
+.user-content {
+  background: #9333ea !important; /* purple-500 */
+  color: #ffffff !important;
+}
+
+/* 消息文本 - 与 React 项目一致: text-sm = 14px = 28rpx */
+.message-text {
+  font-size: 28rpx !important; /* text-sm = 0.875rem = 14px = 28rpx */
+  line-height: 1.5 !important; /* text-sm 默认行高 */
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  display: block !important;
+  color: inherit !important;
+  font-weight: 400 !important; /* font-weight-normal */
+  letter-spacing: 0.01em !important; /* 更精致的字间距 */
+}
+
+/* 使用页面级选择器确保样式生效 */
+/* text-xs = 12px = 24rpx, font-weight: 400 (normal) */
+page .page .message-content text.message-time,
+page .message-content text.message-time,
+.page .message-content text.message-time,
+.message-content text.message-time,
+text.message-time,
+.message-time {
+  font-size: 24rpx !important; /* text-xs = 0.75rem = 12px = 24rpx */
+  font-weight: 400 !important; /* font-weight-normal */
+  margin-top: 16rpx !important;
+  display: block !important;
+  line-height: 1.5 !important;
+  letter-spacing: 0.01em !important; /* 更精致的字间距 */
+}
+
+/* AI 消息时间 - 与 React 项目一致: text-gray-400 */
+/* gray-400 = #9ca3af */
+.page .ai-content text.message-time,
+.ai-content text.message-time {
+  color: #9ca3af !important; /* text-gray-400 */
+  font-size: 24rpx !important;
+}
+
+/* 用户消息时间 - 与 React 项目一致: text-purple-100 */
+/* purple-100 = #f3e8ff，但在白色背景上更接近 rgba(255,255,255,0.7) */
+.page .user-content text.message-time,
+.user-content text.message-time {
+  color: rgba(255, 255, 255, 0.7) !important; /* text-purple-100 在紫色背景上显示为浅色 */
+  font-size: 24rpx !important;
+}
+
+/* 正在输入动画 */
+.typing {
+  padding: 24rpx 32rpx;
+}
+
+.typing-dots {
+  display: flex;
+  gap: 8rpx;
+  align-items: center;
+}
+
+.dot {
+  width: 16rpx;
+  height: 16rpx;
+  background: #9ca3af;
+  border-radius: 50%;
+  animation: bounce 1.4s infinite;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-10rpx);
+  }
+}
+
+/* 输入容器 - 与 React 项目一致: bg-white px-5 py-4 gap-2 */
+.input-container {
+  background: #ffffff !important;
+  padding: 32rpx 40rpx !important; /* py-4 = 32rpx, px-5 = 40rpx */
+  display: flex !important;
+  gap: 16rpx !important; /* gap-2 = 16rpx */
+  align-items: center !important;
+  box-shadow: 0 -2rpx 8rpx rgba(0, 0, 0, 0.1) !important;
+}
+
+.input-wrapper {
+  flex: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  border-radius: 60rpx !important;
+  padding: 4rpx !important;
+  background: #e5e7eb !important;
+  transition: background 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.input-wrapper-focus {
+  background: linear-gradient(135deg, #a855f7 0%, #60a5fa 100%) !important;
+  box-shadow: 0 12rpx 24rpx rgba(96, 165, 250, 0.35) !important;
+}
+
+/* 使用页面级选择器确保样式生效，避免全局样式覆盖 */
+page .page .input-container input[class="input-field"],
+page .input-container input[class="input-field"],
+page .page .input-container input.input-field,
+page .input-container input.input-field,
+.page .input-container input[class="input-field"],
+.page .input-container input.input-field,
+.page input.input-field,
+.input-container input[class="input-field"],
+.input-container input.input-field,
+.input-container input,
+input[class="input-field"],
+input.input-field,
+.input-field {
+  flex: 1 !important;
+  background: #ffffff !important;
+  border-radius: 50rpx !important;
+  padding: 0 32rpx !important;
+  font-size: 30rpx !important; /* 更接近设计稿的字号 */
+  line-height: 88rpx !important;
+  border: none !important;
+  box-sizing: border-box !important;
+  color: #374151 !important;
+  font-weight: 400 !important; /* font-weight-normal */
+  letter-spacing: 0.01em !important; /* 更精致的字间距 */
+  margin: 0 !important;
+  outline: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  height: 88rpx !important;
+  min-height: 88rpx !important;
+  max-height: 88rpx !important;
+  vertical-align: middle !important;
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-shadow: none !important; /* 阴影由 wrapper 控制 */
+  transition: color 0.15s ease !important;
+}
+
+.input-field::placeholder {
+  color: #d6dbe5 !important;
+  font-size: 30rpx !important;
+  opacity: 1 !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.02em !important;
+  font-family: 'SF Pro Display', 'PingFang SC', 'Helvetica Neue', sans-serif !important;
+}
+
+/* 输入框 focus 状态 - 与 React 项目一致: focus:ring-2 focus:ring-purple-500 */
+/* React 项目 focus 时边框保持 gray-300，只添加外圈光晕，不改变边框颜色 */
+/* focus:ring-2 = 2px 外圈阴影, focus:ring-purple-500 = #a855f7 */
+page .page .input-container input.input-field:focus,
+page .input-container input.input-field:focus,
+.page .input-container input.input-field:focus,
+.input-container input.input-field:focus,
+input.input-field:focus,
+.input-field:focus {
+  border-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 发送按钮 - 与 React 项目一致: w-12 h-12 bg-gradient-to-br from-purple-500 to-blue-500 */
+.send-btn {
+  width: 96rpx !important; /* w-12 = 48px = 96rpx */
+  height: 96rpx !important; /* h-12 = 48px = 96rpx */
+  background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%) !important; /* from-purple-500 to-blue-500 */
+  color: #ffffff !important;
+  border-radius: 50% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 4rpx 12rpx rgba(147, 51, 234, 0.3) !important;
+  flex-shrink: 0 !important;
+}
+
+.send-btn::after {
+  border: none !important;
+}
+
+.send-icon {
+  color: #ffffff !important;
+  font-size: 40rpx !important;
+  font-weight: 600 !important;
+  display: block !important;
+  line-height: 1 !important;
+  transform: rotate(-45deg);
+}
+
+.send-btn[disabled] {
+  opacity: 0.5;
+}
+
+.send-btn:active:not([disabled]) {
+  opacity: 0.8;
+}
+

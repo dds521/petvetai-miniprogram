@@ -1,73 +1,159 @@
 <!--pages/diagnosis/diagnosis.wxml-->
-<view class="container">
-  <view class="header">
-    <text class="title">AI 症状诊断</text>
-    <text class="subtitle">描述您的宠物症状，获取 AI 专业建议</text>
-  </view>
-
-  <view class="form-card">
-    <!-- 宠物ID输入 -->
-    <view class="form-item">
-      <text class="label">宠物 ID</text>
-      <input 
-        class="input" 
-        type="number" 
-        placeholder="请输入宠物ID（示例：1）" 
-        value="{{petId}}"
-        bindinput="onPetIdInput"
-      />
-    </view>
-
-    <!-- 症状描述输入 -->
-    <view class="form-item">
-      <text class="label">症状描述</text>
-      <textarea 
-        class="textarea" 
-        placeholder="请详细描述宠物的症状，例如：狗狗咳嗽、食欲不振、精神萎靡等" 
-        value="{{symptomDesc}}"
-        bindinput="onSymptomInput"
-        maxlength="500"
-        show-confirm-bar="{{false}}"
-      />
-      <text class="char-count">{{symptomDesc.length}}/500</text>
-    </view>
-
-    <!-- 提交按钮 -->
-    <button 
-      class="btn-submit {{isLoading ? 'btn-loading' : ''}}" 
-      bindtap="submitDiagnosis"
-      disabled="{{isLoading || !symptomDesc.trim()}}"
-    >
-      <text wx:if="{{isLoading}}">分析中...</text>
-      <text wx:else>获取 AI 诊断</text>
-    </button>
-  </view>
-
-  <!-- 诊断结果 -->
-  <view class="result-card" wx:if="{{diagnosisResult}}">
-    <view class="result-header">
-      <text class="result-title">💡 AI 诊断建议</text>
-      <text class="result-notice">（仅供参考，请咨询专业兽医）</text>
-    </view>
-    <view class="result-content">
-      <text class="result-text">{{diagnosisResult.suggestion}}</text>
-      <view class="result-confidence">
-        <text class="confidence-label">置信度：</text>
-        <text class="confidence-value">{{(diagnosisResult.confidence * 100).toFixed(0)}}%</text>
+<view class="page">
+  <!-- 头部 -->
+  <view class="header gradient-bg">
+    <view class="header-top">
+      <view class="back-btn" bindtap="goBack">
+        <text class="back-icon">←</text>
+      </view>
+      <view class="header-content">
+        <text class="header-title">AI智能诊断</text>
+        <text class="header-subtitle">上传照片即时分析</text>
       </view>
     </view>
   </view>
 
-  <!-- 错误提示 -->
-  <view class="error-card" wx:if="{{error}}">
-    <text class="error-icon">❌</text>
-    <text class="error-text">{{error}}</text>
+  <view class="content">
+    <!-- 上传区域 -->
+    <view wx:if="{{!selectedImage}}" class="upload-section">
+      <view class="upload-card">
+        <view class="upload-icon">
+          <view class="upload-symbol">
+            <view class="upload-arrow"></view>
+            <view class="upload-bar"></view>
+          </view>
+        </view>
+        <text class="upload-title">上传宠物照片</text>
+        <text class="upload-desc">支持 JPG、PNG 格式，最大 10MB</text>
+        <view class="upload-buttons">
+          <view class="upload-btn primary" bindtap="takePhoto">
+            <view class="btn-icon">
+              <view class="btn-icon-inner">
+                <view class="icon-camera">
+                  <view class="camera-top"></view>
+                  <view class="camera-body"></view>
+                  <view class="camera-lens"></view>
+                </view>
+              </view>
+            </view>
+            <view class="btn-text">拍照上传</view>
+          </view>
+          <view class="upload-btn secondary" bindtap="chooseImage">
+            <view class="btn-icon">
+              <view class="btn-icon-inner">
+                <view class="icon-album">
+                  <view class="album-body"></view>
+                  <view class="album-tab"></view>
+                  <view class="album-dot first"></view>
+                  <view class="album-dot second"></view>
+                </view>
+              </view>
+            </view>
+            <view class="btn-text">相册选择</view>
+          </view>
+        </view>
+    </view>
+
+      <!-- 拍摄建议 -->
+      <view class="tips-card">
+        <view class="tips-header">
+          <text class="tips-icon">⚠️</text>
+          <text class="tips-title">拍摄建议</text>
+        </view>
+        <view class="tips-list">
+          <text class="tip-item">• 确保光线充足，照片清晰</text>
+          <text class="tip-item">• 尽量拍摄宠物的正面或侧面</text>
+          <text class="tip-item">• 特别关注需要诊断的部位</text>
+          <text class="tip-item">• 可以上传多张不同角度的照片</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 图片预览和分析 -->
+    <view wx:else class="preview-section">
+      <!-- 图片预览 -->
+      <view class="preview-card">
+        <image class="preview-image" src="{{selectedImage}}" mode="aspectFit"></image>
+        <view class="preview-actions">
+          <button class="action-btn secondary" bindtap="reselectImage">重新选择</button>
+    <button 
+            class="action-btn primary" 
+            bindtap="analyzeImage"
+            disabled="{{isAnalyzing}}"
+    >
+            {{isAnalyzing ? '分析中...' : '开始分析'}}
+    </button>
+        </view>
+      </view>
+
+      <!-- 分析中 -->
+      <view wx:if="{{isAnalyzing}}" class="analyzing-card">
+        <view class="loading-spinner"></view>
+        <text class="analyzing-title">AI正在分析中</text>
+        <text class="analyzing-desc">请稍候，这可能需要几秒钟...</text>
   </view>
 
-  <!-- 清空按钮 -->
-  <view class="action-bar" wx:if="{{diagnosisResult || error}}">
-    <button class="btn-clear" bindtap="clearInput">重新诊断</button>
+  <!-- 诊断结果 -->
+      <view wx:if="{{result && !isAnalyzing}}" class="result-section">
+        <!-- 置信度 -->
+        <view class="result-card">
+    <view class="result-header">
+            <text class="result-title">诊断结果</text>
+            <view class="confidence-badge">
+              <text class="check-icon">✅</text>
+              <text class="confidence-text">置信度: {{result.confidence}}%</text>
+            </view>
+          </view>
+          <view class="confidence-bar">
+            <view class="confidence-fill" style="width: {{result.confidence}}%"></view>
+          </view>
+          <view class="condition-card {{result.severity === 'high' ? 'high' : result.severity === 'medium' ? 'medium' : 'low'}}">
+            <text class="condition-title">{{result.condition}}</text>
+            <text class="condition-desc">{{result.description}}</text>
+          </view>
+        </view>
+
+        <!-- 建议措施 -->
+        <view class="recommendations-card">
+          <text class="recommendations-title">建议措施</text>
+          <view class="recommendations-list">
+            <view class="recommendation-item" wx:for="{{result.recommendations}}" wx:key="index">
+              <view class="rec-number">{{index + 1}}</view>
+              <text class="rec-text">{{item}}</text>
+            </view>
+          </view>
+        </view>
+
+        <!-- 免责声明 -->
+        <view class="disclaimer-card">
+          <text class="disclaimer-text">⚠️ <text class="disclaimer-bold">重要提示：</text>AI诊断仅供参考，不能替代专业兽医的诊断。如有疑虑，请及时就医。</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 功能特点 -->
+    <view class="features-grid">
+      <view class="feature-item analysis">
+        <view class="feature-icon">
+          <view class="feature-dot target"></view>
+        </view>
+        <text class="feature-title">精准分析</text>
+        <text class="feature-desc">AI算法识别</text>
+      </view>
+      <view class="feature-item diagnosis">
+        <view class="feature-icon">
+          <view class="feature-dot flash"></view>
+        </view>
+        <text class="feature-title">即时诊断</text>
+        <text class="feature-desc">秒级响应</text>
+      </view>
+      <view class="feature-item privacy">
+        <view class="feature-icon">
+          <view class="feature-dot lock"></view>
+        </view>
+        <text class="feature-title">隐私保护</text>
+        <text class="feature-desc">数据安全</text>
+      </view>
+    </view>
   </view>
 </view>
-
-

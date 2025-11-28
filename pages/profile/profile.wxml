@@ -1,0 +1,61 @@
+<!--pages/profile/profile.wxml-->
+<view class="page">
+  <!-- Header with Profile -->
+  <view class="header gradient-bg">
+    <view class="profile-info">
+      <view class="avatar-wrapper">
+        <text class="avatar-emoji">🌿</text>
+      </view>
+      <view class="user-details">
+        <text class="user-name">学小姐</text>
+        <text class="user-id">ID: 1234567</text>
+      </view>
+      <button class="edit-btn">编辑</button>
+    </view>
+
+    <!-- Stats -->
+    <view class="stats-grid">
+      <view class="stat-item" wx:for="{{stats}}" wx:key="label">
+        <text class="stat-icon">{{item.icon}}</text>
+        <text class="stat-value">{{item.value}}</text>
+        <text class="stat-label">{{item.label}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="content">
+    <!-- VIP Card -->
+    <view class="vip-card">
+      <view class="vip-info">
+        <view class="vip-title">
+          <text class="vip-icon">👑</text>
+          <text class="vip-name">普通会员</text>
+        </view>
+        <text class="vip-desc">升级VIP享更多权益</text>
+      </view>
+      <button class="upgrade-btn">升级</button>
+    </view>
+
+    <!-- Menu Items -->
+    <view class="menu-list">
+      <view class="menu-item" wx:for="{{menuItems}}" wx:key="label">
+        <view class="menu-icon-wrapper {{item.bgColor}}">
+          <!-- Note: Lucide icons will need to be replaced with wx.Image or icon font -->
+          <text class="menu-icon {{item.color}}">{{item.icon}}</text>
+        </view>
+        <text class="menu-label">{{item.label}}</text>
+        <text class="arrow-icon">></text>
+      </view>
+    </view>
+
+    <!-- Logout Button -->
+    <button class="logout-btn" bindtap="logout">
+      <text class="logout-icon">🚪</text>
+      <text class="logout-text">退出登录</text>
+    </button>
+
+    <!-- Version -->
+    <text class="version-text">版本 v1.0.0</text>
+  </view>
+</view>
+

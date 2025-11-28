@@ -1,0 +1,109 @@
+<!--pages/login/login.wxml-->
+<view class="login-page">
+  <!-- 头部区域 -->
+  <view class="header-section">
+    <view class="app-icon">
+      <text class="icon-text">🐾</text>
+    </view>
+    <text class="app-name">宠物医疗AI</text>
+    <text class="app-tagline">专业的宠物健康管理平台</text>
+  </view>
+
+  <!-- 内容卡片 -->
+  <view class="content-card">
+    <!-- 主要内容区域 -->
+    <view class="main-content">
+      <!-- 登录标签 -->
+      <view class="login-tabs">
+        <view class="tab-item {{loginType === 'wechat' ? 'active' : ''}}" bindtap="switchTab" data-type="wechat">
+          <text class="tab-text">微信登录</text>
+        </view>
+        <view class="tab-item {{loginType === 'phone' ? 'active' : ''}}" bindtap="switchTab" data-type="phone">
+          <text class="tab-text">手机号登录</text>
+        </view>
+      </view>
+
+      <!-- 微信登录内容 -->
+      <view class="login-content" wx:if="{{loginType === 'wechat'}}">
+        <!-- 微信快捷登录区块 -->
+        <view class="wechat-block">
+          <view class="wechat-icon-wrapper">
+            <text class="wechat-icon">💬</text>
+          </view>
+          <text class="wechat-title">微信快捷登录</text>
+          <text class="wechat-subtitle">安全便捷,一键登录</text>
+        </view>
+
+        <!-- 主要登录按钮 -->
+        <button class="primary-login-btn" bindtap="handleWeChatLogin">
+          <text class="btn-text">微信一键登录</text>
+        </button>
+      </view>
+
+      <!-- 手机号登录内容 -->
+      <view class="login-content" wx:if="{{loginType === 'phone'}}">
+        <!-- 手机号输入框 -->
+        <view class="input-group">
+          <view class="input-wrapper">
+            <text class="input-icon">📱</text>
+            <input 
+              class="input-field" 
+              type="number" 
+              placeholder="请输入手机号"
+              placeholder-style="color: #9ca3af; font-size: 22rpx; font-weight: 300; letter-spacing: 0.02em; opacity: 0.75;"
+              value="{{phoneNumber}}"
+              bindinput="onPhoneInput"
+              maxlength="11"
+            />
+          </view>
+        </view>
+
+        <!-- 验证码输入框 -->
+        <view class="input-group">
+          <view class="input-wrapper">
+            <text class="input-icon">🔐</text>
+            <input 
+              class="input-field code-input" 
+              type="number" 
+              placeholder="请输入验证码"
+              placeholder-style="color: #9ca3af; font-size: 22rpx; font-weight: 300; letter-spacing: 0.02em; opacity: 0.75;"
+              value="{{verifyCode}}"
+              bindinput="onCodeInput"
+              maxlength="6"
+            />
+            <button class="get-code-btn {{canGetCode ? '' : 'disabled'}}" bindtap="getVerifyCode" disabled="{{!canGetCode}}">
+              <text class="code-btn-text">{{codeButtonText}}</text>
+            </button>
+          </view>
+        </view>
+
+        <!-- 登录按钮 -->
+        <button class="primary-login-btn" bindtap="handlePhoneLogin" disabled="{{!canLogin}}">
+          <text class="btn-text">登录</text>
+        </button>
+      </view>
+    </view>
+
+    <!-- 底部固定区域 -->
+    <view class="bottom-fixed">
+      <!-- 分隔线 -->
+      <view class="divider">
+        <text class="divider-text">或</text>
+      </view>
+
+      <!-- 游客模式按钮 -->
+      <button class="guest-btn" bindtap="handleGuestLogin">
+        <text class="guest-text">游客模式体验</text>
+      </button>
+
+      <!-- 法律声明 -->
+      <view class="legal-text">
+        <text class="legal-content">登录即表示同意</text>
+        <text class="legal-link" bindtap="showAgreement">《用户协议》</text>
+        <text class="legal-content">和</text>
+        <text class="legal-link" bindtap="showPrivacy">《隐私政策》</text>
+      </view>
+    </view>
+  </view>
+</view>
+

@@ -1,0 +1,469 @@
+/* pages/login/login.wxss */
+.login-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #a855f7 0%, #9333ea 50%, #3b82f6 100%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 头部区域 */
+.header-section {
+  padding: 72rpx 40rpx 32rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.app-icon {
+  width: 160rpx;
+  height: 160rpx;
+  background: #ffffff;
+  border-radius: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.15);
+}
+
+.icon-text {
+  font-size: 80rpx;
+  line-height: 1;
+  display: block;
+  filter: grayscale(0.3);
+}
+
+.app-name {
+  color: #ffffff;
+  font-size: 48rpx;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 16rpx;
+  display: block;
+  text-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.2);
+}
+
+.app-tagline {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 28rpx;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  display: block;
+}
+
+/* 内容卡片 */
+.content-card {
+  background: #ffffff;
+  border-radius: 48rpx 48rpx 0 0;
+  width: 92%;
+  max-width: 660rpx;
+  margin-top: 48rpx;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  padding: 24rpx 0 32rpx;
+  box-shadow: 0 -8rpx 24rpx rgba(0, 0, 0, 0.08);
+  min-height: auto;
+}
+
+/* 主要内容区域 */
+.main-content {
+  padding: 24rpx 32rpx 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+/* 底部固定区域 */
+.bottom-fixed {
+  padding: 16rpx 32rpx 0;
+  flex-shrink: 0;
+  background: #ffffff;
+  width: 100%;
+  max-width: none;
+  margin: 32rpx auto 24rpx;
+}
+
+/* 登录标签 */
+.login-tabs {
+  display: flex;
+  gap: 16rpx;
+  margin-bottom: 32rpx;
+  background: transparent;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.tab-item {
+  flex: 1;
+  padding: 20rpx 0;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  border-radius: 12rpx;
+  background: #f3f4f6;
+  border: 2rpx solid transparent;
+}
+
+.tab-item.active {
+  background: #ffffff;
+  border-color: #e5e7eb;
+}
+
+.tab-item.active .tab-text {
+  color: #9333ea;
+  font-weight: 400;
+}
+
+.tab-text {
+  color: #6b7280;
+  font-size: 26rpx;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  display: block;
+}
+
+/* 微信快捷登录区块 */
+.wechat-block {
+  background: #d1fae5;
+  border: 2rpx solid #10b981;
+  border-radius: 24rpx;
+  padding: 40rpx 32rpx;
+  margin-bottom: 32rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.wechat-icon-wrapper {
+  width: 120rpx;
+  height: 120rpx;
+  background: #10b981;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24rpx;
+}
+
+.wechat-icon {
+  font-size: 64rpx;
+  line-height: 1;
+  display: block;
+}
+
+.wechat-title {
+  color: #374151;
+  font-size: 30rpx;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  margin-bottom: 8rpx;
+  display: block;
+}
+
+.wechat-subtitle {
+  color: #6b7280;
+  font-size: 24rpx;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  display: block;
+}
+
+/* 主要登录按钮 */
+.primary-login-btn {
+  width: 100% !important;
+  height: 96rpx;
+  background: linear-gradient(90deg, #a855f7 0%, #3b82f6 100%) !important;
+  border-radius: 48rpx;
+  margin: 0 auto 40rpx !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 4rpx 16rpx rgba(147, 51, 234, 0.25);
+  transition: all 0.3s ease;
+  border: none !important;
+  padding: 0 !important;
+  flex-shrink: 0;
+  box-sizing: border-box !important;
+  align-self: stretch !important;
+}
+
+.primary-login-btn:active {
+  transform: scale(0.98);
+  box-shadow: 0 2rpx 8rpx rgba(147, 51, 234, 0.2);
+}
+
+.primary-login-btn .btn-text {
+  color: #ffffff !important;
+  font-size: 30rpx;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  text-align: center;
+  display: block;
+  width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.primary-login-btn::after {
+  border: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* 分隔线 */
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40rpx 0 28rpx;
+  position: relative;
+}
+
+.divider::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2rpx;
+  background: #e5e7eb;
+}
+
+.divider-text {
+  background: #ffffff;
+  padding: 0 24rpx;
+  color: #9ca3af;
+  font-size: 22rpx;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  position: relative;
+  z-index: 1;
+}
+
+/* 游客模式按钮 */
+.guest-btn {
+  width: 100% !important;
+  height: 88rpx;
+  background: #f3f4f6 !important;
+  border: none !important;
+  border-radius: 44rpx;
+  margin: 0 auto !important;
+  margin-bottom: 40rpx;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s ease;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  align-self: stretch !important;
+}
+
+.guest-btn:active {
+  background: #e5e7eb !important;
+  transform: scale(0.98);
+}
+
+.guest-text {
+  color: #374151 !important;
+  font-size: 26rpx;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  text-align: center;
+  display: block;
+  width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.guest-btn::after {
+  border: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* 法律声明 */
+.legal-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0;
+  padding: 0 20rpx;
+  line-height: 1.6;
+  margin-top: 56rpx;
+}
+
+.legal-content {
+  color: #9ca3af;
+  font-size: 22rpx;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.legal-link {
+  color: #9333ea;
+  font-size: 22rpx;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-decoration: underline;
+  margin: 0 4rpx;
+}
+
+/* 登录内容区域 */
+.login-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  justify-content: flex-start;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* 输入框组 */
+.input-group {
+  margin-bottom: 24rpx;
+  flex-shrink: 0;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 16rpx;
+  padding: 0 24rpx;
+  border: 2rpx solid #e5e7eb;
+  transition: all 0.3s ease;
+  min-height: 96rpx;
+  gap: 12rpx;
+}
+
+.input-wrapper:focus-within {
+  border-color: #9333ea;
+  background: #ffffff;
+}
+
+.input-icon {
+  font-size: 32rpx;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+.input-field {
+  flex: 1;
+  height: 96rpx;
+  font-size: 28rpx;
+  color: #1f2937;
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.input-field::placeholder {
+  color: #9ca3af !important;
+  font-size: 22rpx !important;
+  font-weight: 300 !important;
+  letter-spacing: 0.02em !important;
+  opacity: 0.75 !important;
+}
+
+/* 增加选择器优先级，确保 placeholder 样式生效 */
+.input-wrapper .input-field::placeholder,
+.input-group .input-wrapper .input-field::placeholder,
+.login-content .input-group .input-wrapper .input-field::placeholder,
+.input-wrapper input::placeholder,
+.input-group .input-wrapper input::placeholder,
+.login-content .input-group .input-wrapper input::placeholder {
+  color: #9ca3af !important;
+  font-size: 22rpx !important;
+  font-weight: 300 !important;
+  letter-spacing: 0.02em !important;
+  opacity: 0.75 !important;
+}
+
+/* 针对验证码输入框的 placeholder */
+.code-input::placeholder {
+  color: #9ca3af !important;
+  font-size: 22rpx !important;
+  font-weight: 300 !important;
+  letter-spacing: 0.02em !important;
+  opacity: 0.75 !important;
+}
+
+.code-input {
+  flex: 1;
+  margin-right: 12rpx;
+  min-width: 0;
+}
+
+.get-code-btn {
+  padding: 8rpx 16rpx;
+  background: #f3f4f6 !important;
+  border-radius: 8rpx;
+  border: none !important;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  height: 64rpx !important;
+  min-width: 140rpx !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+}
+
+.get-code-btn.disabled {
+  background: #e5e7eb !important;
+  opacity: 0.6;
+}
+
+.code-btn-text {
+  color: #9333ea !important;
+  font-size: 24rpx;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.get-code-btn::after {
+  border: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.get-code-btn.disabled .code-btn-text {
+  color: #9ca3af !important;
+}
+
+.get-code-btn::after {
+  border: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.primary-login-btn[disabled] {
+  opacity: 0.6;
+  background: #d1d5db !important;
+}
+
+.primary-login-btn[disabled] .btn-text {
+  color: #9ca3af !important;
+}
+

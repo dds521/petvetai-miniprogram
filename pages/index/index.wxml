@@ -1,40 +1,137 @@
 <!--pages/index/index.wxml-->
-<view class="container">
-  <view class="header">
-    <image class="logo" src="/images/logo.png" mode="aspectFit"></image>
-    <text class="title">PetVetAI</text>
-    <text class="subtitle">AI 宠物医疗助手</text>
+<view class="page gradient-bg">
+  <view class="header-section">
+    <!-- 用户信息 -->
+    <view class="user-header">
+      <view class="user-info">
+        <view class="avatar">🌿</view>
+        <view class="user-details">
+          <text class="user-subtitle">树叶</text>
+          <text class="user-name">学小姐</text>
+        </view>
+      </view>
+      <view class="bell-icon">🔔</view>
+    </view>
+
+    <!-- 搜索框 -->
+    <view class="search-bar">
+      <text class="search-icon">🔍</text>
+      <input 
+        class="search-input" 
+        placeholder="搜索症状、疾病咨询等内容..." 
+        bindinput="onSearchInput"
+      />
+    </view>
   </view>
 
-  <view class="content">
-    <view class="intro-card">
-      <text class="intro-title">欢迎使用 PetVetAI</text>
-      <text class="intro-text">您的智能宠物医疗助手，提供专业的症状分析和健康建议</text>
-    </view>
-
-    <view class="features">
-      <view class="feature-item">
-        <text class="feature-icon">🤖</text>
-        <text class="feature-text">AI 智能诊断</text>
-      </view>
-      <view class="feature-item">
-        <text class="feature-icon">⚡</text>
-        <text class="feature-text">快速响应</text>
-      </view>
-      <view class="feature-item">
-        <text class="feature-icon">💡</text>
-        <text class="feature-text">专业建议</text>
+  <!-- AI诊断卡片 -->
+  <view class="ai-diagnosis-card">
+    <view class="card-bg">
+      <view class="card-content">
+        <view class="card-title">
+          <text class="title-icon">⚡</text>
+          <text class="title-text">AI智能诊断</text>
+        </view>
+        <text class="card-desc">上传爱宠照片，AI即时分析健康状况</text>
+        <button class="start-btn" bindtap="goToDiagnosis">开始诊断</button>
       </view>
     </view>
+    </view>
 
-    <button class="btn-start" bindtap="goToDiagnosis">开始咨询</button>
-    
-    <button class="btn-demo" bindtap="goToDemo">查看通信 Demo</button>
+  <!-- 快捷服务 -->
+  <view class="quick-services">
+    <text class="section-title">快捷服务</text>
+      <view class="services-grid">
+        <view class="service-item" bindtap="goToConsult">
+          <view class="service-icon blue">
+            <text class="service-icon-text">💬</text>
+          </view>
+          <text class="service-text">在线咨询</text>
+        </view>
+        <view class="service-item" bindtap="goToAppointment">
+          <view class="service-icon green">
+            <text class="service-icon-text">📅</text>
+          </view>
+          <text class="service-text">预约挂号</text>
+        </view>
+        <view class="service-item">
+          <view class="service-icon orange">
+            <text class="service-icon-text">🛒</text>
+          </view>
+          <text class="service-text">商品商城</text>
+        </view>
+        <view class="service-item">
+          <view class="service-icon purple">
+            <text class="service-icon-text">📋</text>
+          </view>
+          <text class="service-text">健康档案</text>
+        </view>
+      </view>
+    </view>
 
-    <view class="notice">
-      <text class="notice-text">⚠️ 提示：AI 诊断结果仅供参考，请咨询专业兽医</text>
+  <!-- 我的宠物 -->
+  <view class="my-pets">
+    <view class="section-header">
+      <text class="section-title">我的宠物</text>
+      <text class="add-btn" bindtap="addPet">添加 +</text>
+    </view>
+    <scroll-view class="pets-scroll" scroll-x>
+      <view class="pets-list">
+        <view class="pet-card" wx:for="{{pets}}" wx:key="id">
+          <text class="pet-emoji">{{item.image}}</text>
+          <text class="pet-name">{{item.name}}</text>
+          <text class="pet-info">{{item.age}}・{{item.status}}</text>
+        </view>
+        <view class="pet-card add-pet" bindtap="addPet">
+          <text class="add-icon">+</text>
+          <text class="add-text">添加宠物</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 健康小贴士 -->
+  <view class="health-tips">
+    <view class="section-header">
+      <text class="section-title">健康小贴士</text>
+      <text class="more-btn">查看更多 ></text>
+    </view>
+    <view class="tips-list">
+      <view class="tip-item" wx:for="{{healthTips}}" wx:key="id" bindtap="goToHealthTips" data-id="{{item.id}}">
+        <view class="tip-icon">{{item.image}}</view>
+        <view class="tip-content">
+          <text class="tip-title">{{item.title}}</text>
+          <text class="tip-desc">{{item.description}}</text>
+          <view class="tip-meta">
+            <text class="tip-time">⏰ {{item.readTime}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 在线医生 -->
+  <view class="online-doctors">
+    <view class="section-header">
+      <text class="section-title">在线医生</text>
+      <text class="more-btn">全部医生 ></text>
+    </view>
+    <view class="doctors-list">
+      <view class="doctor-card" wx:for="{{doctors}}" wx:key="id">
+        <view class="doctor-avatar">{{item.avatar}}</view>
+        <view class="doctor-info">
+          <view class="doctor-header">
+            <text class="doctor-name">{{item.name}}</text>
+            <text class="doctor-status">{{item.status}}</text>
+          </view>
+          <text class="doctor-specialty">{{item.specialty}}</text>
+          <view class="doctor-rating">
+            <text class="stars">⭐⭐⭐⭐⭐</text>
+            <text class="rating-text">{{item.rating}} ({{item.reviews}}条评价)</text>
+          </view>
+        </view>
+        <button class="consult-btn" bindtap="consultDoctor" data-id="{{item.id}}">咨询</button>
+      </view>
     </view>
   </view>
 </view>
-
-
